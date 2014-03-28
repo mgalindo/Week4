@@ -1,1 +1,19 @@
-<p>This is the partial for view 1.</p>
+<form id="frmEdit" name="EditForm" novalidate="">
+    <div>
+        <label>Make:</label>
+        <input type="text" ng-model="car.make"/>
+        <span> {{ car.make }}  </span>
+        <br>
+        <label>Model:</label>
+        <input type="text" ng-model="car.model"/>
+        <span> {{ car.model }}  </span>
+        <br>
+        <label>Year:</label>
+        <input type="number" ng-model="car.year"/>
+        <span> {{ car.year }}  </span>
+        <br>
+        <label>Price:</label>
+        <input type="number" ng-model="car.price"/>
+        <span> {{ car.price | currency}}  </span>
+    </div>
+</form>
