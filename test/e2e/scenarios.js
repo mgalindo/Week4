@@ -12,6 +12,7 @@ describe('my app', function() {
 
 
   describe('view1', function() {
+    var htmlElement;
 
     beforeEach(function() {
       browser.get('index.html#/view1');
@@ -22,6 +23,18 @@ describe('my app', function() {
       expect(element.all(by.css('[ng-view] form')).first().getAttribute('id')).
         toMatch(/frmEdit/);
     });
+
+      it('should have a "Make:" label', function() {
+          htmlElement = element(by.id('lblMake'));
+          expect(htmlElement).not.toBe(undefined);
+          expect(htmlElement.getText()).toEqual('Make:');
+      });
+
+      it('should have a "Make" edit', function() {
+          htmlElement = element(by.id('edMake'));
+          expect(htmlElement).not.toBe(undefined);
+          expect(htmlElement.getAttribute('value')).toEqual('Honda');
+      })
 
   });
 
