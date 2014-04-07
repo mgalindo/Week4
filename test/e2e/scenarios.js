@@ -3,6 +3,7 @@
 /* https://github.com/angular/protractor/blob/master/docs/getting-started.md */
 
 describe('my app', function() {
+  var htmlElement, htmlElement2;
 
   browser.get('index.html');
 
@@ -12,7 +13,6 @@ describe('my app', function() {
 
 
   describe('view1', function() {
-    var htmlElement, htmlElement2;
 
     beforeEach(function() {
       browser.get('index.html#/view1');
@@ -158,6 +158,23 @@ describe('my app', function() {
       expect(element.all(by.css('[ng-view] th')).first().getText()).
         toMatch(/Make/);
     });
+
+      it('should render view2 when user navigates to /view2', function() {
+          expect(element.all(by.css('[ng-view] th')).first().getText()).
+              toMatch(/Make/);
+      });
+
+      it('should have a list of cars and should have the correct number of rows', function() {
+          var carList = element.all(by.repeater('car in cars'));
+
+          expect(carList.count()).toBe(6);
+      });
+
+      it('should have "Honda" as the make in the first row', function() {
+          htmlElement = element(by.repeater('car in cars').row(0).column('{{car.make}}'));
+
+          expect(htmlElement.getText()).toEqual('Honda');
+      });
 
   });
 });
